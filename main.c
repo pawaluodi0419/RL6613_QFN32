@@ -49,6 +49,12 @@ int main()
 
 	xil_printf("FT2 start!\r\nFPGA Version:RTS5452E_FT_Merge_Release_2021032501\r\n");
 
+	XGpio_WriteBit(XPAR_AXI_GPIO_1_BASEADDR,0,1, 0);	//reset usb host
+	msdelay(100);
+	XGpio_WriteBit(XPAR_AXI_GPIO_1_BASEADDR,0,1, 1);
+	xil_printf("reset usb host!\r\n");
+	msdelay(1000);
+
     u16 i=0;
 	u16 j=0;
 	u16 k=0;
@@ -286,10 +292,10 @@ int main()
 	dut2.g_start_test_flag2 = 0x00;
 	dut3.g_start_test_flag2 = 0x00;
 
-	dut0.g_result_polling_tmrcount = 5;
-	dut1.g_result_polling_tmrcount = 5;
-	dut2.g_result_polling_tmrcount = 5;
-	dut3.g_result_polling_tmrcount = 5;
+	dut0.g_result_polling_tmrcount = 10;
+	dut1.g_result_polling_tmrcount = 10;
+	dut2.g_result_polling_tmrcount = 10;
+	dut3.g_result_polling_tmrcount = 10;
 
 	//flag used to send uart data 0x03
 	dut0.g_ft2_test_done = 0x00;
@@ -802,7 +808,7 @@ int main()
 			}
 		}
 
-		u8	uartRecBuf[4];
+		u8	uartRecTempBuf[4];
 
 		if((dut0.g_start_test_flag1 == 0x01)||(dut1.g_start_test_flag1 == 0x01)||(dut2.g_start_test_flag1 == 0x01)||(dut3.g_start_test_flag1 == 0x01))
 		{
@@ -816,9 +822,9 @@ int main()
 			XUartLite_SendByte(XPAR_UARTLITE_0_BASEADDR,0x01);
 			msdelay(5);
 
-			uartRecBuf[0] = XUartLite_RecvByte(XPAR_UARTLITE_0_BASEADDR);
-			uartRecBuf[1] = XUartLite_RecvByte(XPAR_UARTLITE_0_BASEADDR);
-			uartRecBuf[2] = XUartLite_RecvByte(XPAR_UARTLITE_0_BASEADDR);
+			uartRecTempBuf[0] = XUartLite_RecvByte(XPAR_UARTLITE_0_BASEADDR);
+			uartRecTempBuf[1] = XUartLite_RecvByte(XPAR_UARTLITE_0_BASEADDR);
+			uartRecTempBuf[2] = XUartLite_RecvByte(XPAR_UARTLITE_0_BASEADDR);
 		}
 
 		if((dut0.g_start_test_flag2 == 0x02)||(dut1.g_start_test_flag2 == 0x02)||(dut2.g_start_test_flag2 == 0x02)||(dut3.g_start_test_flag2 == 0x02))
@@ -828,19 +834,19 @@ int main()
 			dut2.g_start_test_flag2 = 0x00;
 			dut3.g_start_test_flag2 = 0x00;
 
-			dut0.g_result_polling_tmrcount = 5;
-			dut1.g_result_polling_tmrcount = 5;
-			dut2.g_result_polling_tmrcount = 5;
-			dut3.g_result_polling_tmrcount = 5;
+			dut0.g_result_polling_tmrcount = 10;
+			dut1.g_result_polling_tmrcount = 10;
+			dut2.g_result_polling_tmrcount = 10;
+			dut3.g_result_polling_tmrcount = 10;
 
 			xil_printf("usb host start to test u2 mux and aux mux positive!\r\n\r\n");
 			XUartLite_SendByte(XPAR_UARTLITE_0_BASEADDR,0x55);
 			XUartLite_SendByte(XPAR_UARTLITE_0_BASEADDR,0x02);
 			msdelay(5);
 
-			uartRecBuf[0] = XUartLite_RecvByte(XPAR_UARTLITE_0_BASEADDR);
-			uartRecBuf[1] = XUartLite_RecvByte(XPAR_UARTLITE_0_BASEADDR);
-			uartRecBuf[2] = XUartLite_RecvByte(XPAR_UARTLITE_0_BASEADDR);
+			uartRecTempBuf[0] = XUartLite_RecvByte(XPAR_UARTLITE_0_BASEADDR);
+			uartRecTempBuf[1] = XUartLite_RecvByte(XPAR_UARTLITE_0_BASEADDR);
+			uartRecTempBuf[2] = XUartLite_RecvByte(XPAR_UARTLITE_0_BASEADDR);
 		}
 
 		if((dut0.g_ft2_test_done == 0x00) && (dut1.g_ft2_test_done == 0x00) && (dut2.g_ft2_test_done == 0x00) && (dut3.g_ft2_test_done == 0x00))
@@ -849,9 +855,9 @@ int main()
 			XUartLite_SendByte(XPAR_UARTLITE_0_BASEADDR,0x03);
 			msdelay(5);
 
-			uartRecBuf[0] = XUartLite_RecvByte(XPAR_UARTLITE_0_BASEADDR);
-			uartRecBuf[1] = XUartLite_RecvByte(XPAR_UARTLITE_0_BASEADDR);
-			uartRecBuf[2] = XUartLite_RecvByte(XPAR_UARTLITE_0_BASEADDR);
+			uartRecTempBuf[0] = XUartLite_RecvByte(XPAR_UARTLITE_0_BASEADDR);
+			uartRecTempBuf[1] = XUartLite_RecvByte(XPAR_UARTLITE_0_BASEADDR);
+			uartRecTempBuf[2] = XUartLite_RecvByte(XPAR_UARTLITE_0_BASEADDR);
 
 			msdelay(2000);
 			//xil_printf("without start signal or ft2 test done, send uart data 0x03!\r\n\r\n");

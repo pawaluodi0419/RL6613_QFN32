@@ -43,7 +43,7 @@ u8 _by_Pattern_Billboard_dut0()
 			else
 			{
 				XGpio_WriteBit(XPAR_AXI_GPIO_1_BASEADDR,0,1, 0);	//reset usb host
-				msdelay(10);
+				msdelay(100);
 				xil_printf("reset usb host!\r\n");
 				dut0.g_result_fail=0x01;
 				dut0.g_result_fail_tmrcount = 0xffff;
@@ -61,7 +61,7 @@ u8 _by_Pattern_Billboard_dut0()
 				dut0.g_pattern_smbus_control_buf[i] = CLEAR_;
 			}
 
-			dut0.g_result_polling_tmrcount = 5;
+			dut0.g_result_polling_tmrcount = 10;
 			dut0.g_pattern_timer = 0xfff;
 			dut0.g_pattern_smbus_control_buf[0] = smbus_road_waiting;
 			dut0.g_pattern_step = 0x00;
