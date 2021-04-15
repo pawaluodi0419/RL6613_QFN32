@@ -807,7 +807,7 @@ int main()
 				}
 			}
 		}
-
+/*
 		u8	uartRecTempBuf[4];
 
 		if((dut0.g_start_test_flag1 == 0x01)||(dut1.g_start_test_flag1 == 0x01)||(dut2.g_start_test_flag1 == 0x01)||(dut3.g_start_test_flag1 == 0x01))
@@ -862,6 +862,7 @@ int main()
 			msdelay(2000);
 			//xil_printf("without start signal or ft2 test done, send uart data 0x03!\r\n\r\n");
 		}
+*/
    }
    return 0;
 }
