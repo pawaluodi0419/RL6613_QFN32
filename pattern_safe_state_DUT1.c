@@ -10,8 +10,8 @@ void pattern_safe_state_dut1()
 	Buff_dut1_XGPIO_0[1] = 0xDF;							//REG0006
 	Buff_dut1_XGPIO_0[2] = 0x40;							//REG0007 output value[15:8]
 	Buff_dut1_XGPIO_0[3] = 0x9F;							//REG0008
-	Buff_dut1_XGPIO_0[4] = 0x00|(dut1.g_uartPatternNum<<1); //REG0009 output value[23:16]
-	Buff_dut1_XGPIO_0[5] = 0xE1;							//REG000a
+	Buff_dut1_XGPIO_0[4] = 0x00|(dut1.g_uartPatternNum); 	//REG0009 output value[23:16]
+	Buff_dut1_XGPIO_0[5] = 0xE0;							//REG000a
 	Buff_dut1_XGPIO_0[6] = 0x00;							//REG000b output value[31:24]
 	Buff_dut1_XGPIO_0[7] = 0xFF;							//REG000c
 	XGpio_dut1_Relay_WriteByte(XPAR_AXI_GPIO_dut1_1_BASEADDR,Buff_dut1_XGPIO_0);

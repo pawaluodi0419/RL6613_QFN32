@@ -215,8 +215,8 @@ u8 _by_Pattern_PD_msg_dut1()
 		else
 		{
 			xil_printf("dut1 polling pattern ack bit =%x\r\n", dut1.g_pattern_smbus_control_buf[10]);
-			//if(dut1.g_pattern_smbus_control_buf[10] == 0x80)
-			//{
+			if(dut1.g_pattern_smbus_control_buf[10] == 0x80)
+			{
 				for(i=1; i<31; i++)
 				{
 					dut1.g_pattern_smbus_control_buf[i] = CLEAR_;
@@ -232,8 +232,7 @@ u8 _by_Pattern_PD_msg_dut1()
 				//dut1.g_uartPatternNum = (dut1.g_uartPatternNum++ & 0xff);
 				result_output_for_v50(XPAR_AXI_GPIO_dut1_1_BASEADDR,dut1.g_uartPatternNum);
 				xil_printf("dut1.pattern_PD_msg_pass!\r\n\r\n");
-			//}
-			/*
+			}
 			else
 			{
 				if(dut1.g_ack_bit_reread_timer > 0)
@@ -254,7 +253,6 @@ u8 _by_Pattern_PD_msg_dut1()
 					dut1.g_result_fail_tmrcount = 0xffff;
 				}
 			}
-			*/
 		}
 		break;
 	}
