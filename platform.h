@@ -47,6 +47,7 @@
 #include "timer_drv.h"
 #include "uart_drv.h"
 #include "var_initial.h"
+#include "result_output_for_v50.h"
 
 #include "Pattern0_Setup_DUT.h"
 #include "Pattern1.h"
@@ -229,5 +230,15 @@ extern struct DUT dut3;
 
 void init_platform();
 void cleanup_platform();
+
+void pattern_initial_state_dut0();
+void pattern_initial_state_dut1();
+void pattern_initial_state_dut2();
+void pattern_initial_state_dut3();
+
+void pattern_safe_state_dut0();
+void pattern_safe_state_dut1();
+void pattern_safe_state_dut2();
+void pattern_safe_state_dut3();
 
 #endif

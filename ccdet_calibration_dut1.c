@@ -1,5 +1,4 @@
 #include "platform.h"
-#include "ccdet_calibration_dut.h"
 
 u8 _ccdet_calibration_dut1()
 {

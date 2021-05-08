@@ -5,7 +5,6 @@ void pattern_safe_state_dut0()
 {
 	u8 i;
 	u8 Buff_dut0_XGPIO_0[8];
-
 	//relay control
 	Buff_dut0_XGPIO_0[0] = 0x00;                            //REG0005 ouput value[7:0]
 	Buff_dut0_XGPIO_0[1] = 0xDF;							//REG0006

@@ -35,18 +35,6 @@ u8 g_ledD7Tg=0;
 
 int main()
 {
-	//XGpio_WriteBit(XPAR_AXI_GPIO_1_BASEADDR,0,8, 0);
-	XGpio_2_WriteBit(0,dut0_FT2_PWR_CTRL_OFFSET,0x01);
-	XGpio_2_WriteBit(0,dut1_FT2_PWR_CTRL_OFFSET,0x01);
-	XGpio_2_WriteBit(0,dut2_FT2_PWR_CTRL_OFFSET,0x01);
-	XGpio_2_WriteBit(0,dut3_FT2_PWR_CTRL_OFFSET,0x01);
-
-	XGpio_0_WriteBit(0,LED_D6_OFFSET,g_ledD6Tg);
-	g_ledD6Tg=~g_ledD6Tg;
-	msdelay(3);
-	XGpio_0_WriteBit(0,LED_D6_OFFSET,g_ledD6Tg);
-	g_ledD6Tg=~g_ledD6Tg;
-
 	xil_printf("FT2 start!\r\nFPGA Version:RTS5452E_FT_Merge_Release_2021032501\r\n");
 
 	XGpio_WriteBit(XPAR_AXI_GPIO_1_BASEADDR,0,1, 0);	//reset usb host
@@ -54,6 +42,11 @@ int main()
 	XGpio_WriteBit(XPAR_AXI_GPIO_1_BASEADDR,0,1, 1);
 	xil_printf("reset usb host!\r\n");
 	msdelay(1000);
+
+	pattern_initial_state_dut0();
+	pattern_initial_state_dut1();
+	pattern_initial_state_dut2();
+	pattern_initial_state_dut3();
 
     u16 i=0;
 	u16 j=0;
@@ -807,7 +800,7 @@ int main()
 				}
 			}
 		}
-/*
+
 		u8	uartRecTempBuf[4];
 
 		if((dut0.g_start_test_flag1 == 0x01)||(dut1.g_start_test_flag1 == 0x01)||(dut2.g_start_test_flag1 == 0x01)||(dut3.g_start_test_flag1 == 0x01))
@@ -862,7 +855,6 @@ int main()
 			msdelay(2000);
 			//xil_printf("without start signal or ft2 test done, send uart data 0x03!\r\n\r\n");
 		}
-*/
    }
    return 0;
 }

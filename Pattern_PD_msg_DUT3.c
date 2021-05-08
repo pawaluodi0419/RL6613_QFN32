@@ -228,7 +228,7 @@ u8 _by_Pattern_PD_msg_dut3()
 				dut3.g_pattern_step = 0x00;
 				dut3.g_dut_pattern_status_buf[2]++;
 				dut3.g_uartPatternEnable = 0x00;
-				dut3.g_uartPatternNum = 0x16;
+				dut3.g_uartPatternNum = 0x15;
 				//dut3.g_uartPatternNum = (dut3.g_uartPatternNum++ & 0xff);
 				result_output_for_v50(XPAR_AXI_GPIO_dut3_1_BASEADDR,dut3.g_uartPatternNum);
 				xil_printf("dut3.pattern_PD_msg_pass!\r\n\r\n");
